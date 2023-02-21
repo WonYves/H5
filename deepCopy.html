@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+  let obj1 = {
+    name: 'kerwin',
+    color: ['red', 'blue', 'green'],
+    friend:{
+      name:'xiaoming',
+    },
+    age:22
+  }
+
+  const deepCopy = (obj) => {
+    if(typeof obj !=="object" || obj === null) {
+      return obj
+    }
+    let result 
+    if(obj instanceof Array){
+      result = []
+    }else{
+      result = {}
+    }
+
+    for(let key in obj){
+       // hasOwnProperty(propertyName)方法 
+       // 是用来检测属性是否为对象的自有属性,如果是,返回true,否者false
+       // 参数propertyName指要检测的属性名;
+      if(obj.hasOwnProperty(key)){
+        result[key] = deepCopy(obj[key])
+      }
+    }
+
+    return result
+
+  }
+
+  let obj2 = deepCopy(obj1)
+  obj2.color[0] = 'pink'
+  obj2.age = 33
+  console.log(obj1,obj2);
+</script>
+
+</html>
