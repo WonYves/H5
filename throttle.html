@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="box" style="width: 200px; height: 200px; background: pink;" draggable="true"></div>
+</body>
+
+<script>
+
+
+  const handleDrag = () => {
+    console.log('test');
+  }
+
+  /**
+ * 
+ * @param fn = 回调函数
+ * @param delay = 间隔（毫秒）
+ * @returns 函数
+ */
+  const throttle = (fn, delay) => {
+    let timer = null
+    return  function(){
+      if(timer){
+        return
+      }
+     timer = setTimeout(() => {
+        fn()
+        timer = null
+      }, delay)
+    } 
+  }
+  
+  let boxDom = document.querySelector('.box')
+
+  boxDom.addEventListener('drag', throttle(handleDrag, 1000))
+</script>
+</html>
